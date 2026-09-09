@@ -1,34 +1,35 @@
+import { Link } from 'react-router-dom'
 import { MaterialSymbolsOutlined } from './MaterialSymbolsOutlined'
 
 const menuItems = [
-  { section: 'Ringkasan', items: [{ icon: 'dashboard', label: 'Dashboard Eksekutif', active: true }] },
+  { section: 'Ringkasan', items: [{ icon: 'dashboard', label: 'Dashboard Eksekutif', path: '/', active: true }] },
   {
     section: 'Perencanaan & Anggaran',
     items: [
-      { icon: 'account_balance_wallet', label: 'Matriks & Versi APBDes', active: false },
-      { icon: 'event_note', label: 'RKPDesa 2024', active: false },
+      { icon: 'account_balance_wallet', label: 'Matriks & Versi APBDes', path: '#', active: false },
+      { icon: 'event_note', label: 'RKPDesa 2024', path: '#', active: false },
     ],
   },
   {
     section: 'Penatausahaan Keuangan',
     items: [
-      { icon: 'payments', label: 'Kas & SPP / SP2D', active: false },
-      { icon: 'menu_book', label: 'Buku Kas Umum (BKU)', active: false },
-      { icon: 'receipt_long', label: 'Pajak & Potongan PPh/PPn', active: false },
+      { icon: 'payments', label: 'Kas & SPP / SP2D', path: '#', active: false },
+      { icon: 'menu_book', label: 'Buku Kas Umum (BKU)', path: '#', active: false },
+      { icon: 'receipt_long', label: 'Pajak & Potongan PPh/PPn', path: '#', active: false },
     ],
   },
   {
     section: 'Pengawasan & Proyek',
     items: [
-      { icon: 'foundation', label: 'Monitoring Fisik & Proyek', active: false },
-      { icon: 'inventory_2', label: 'Aset & Inventaris Desa', active: false },
+      { icon: 'foundation', label: 'Monitoring Fisik & Proyek', path: '/monitoring-fisik-dan-proyek', active: false },
+      { icon: 'inventory_2', label: 'Aset & Inventaris Desa', path: '#', active: false },
     ],
   },
   {
     section: 'Transparansi & Laporan',
     items: [
-      { icon: 'analytics', label: 'LRA & Akuntansi CaLK', active: false },
-      { icon: 'public', label: 'Portal Publik Warga', active: false },
+      { icon: 'analytics', label: 'LRA & Akuntansi CaLK', path: '#', active: false },
+      { icon: 'public', label: 'Portal Publik Warga', path: '#', active: false },
     ],
   },
 ]
@@ -62,19 +63,18 @@ export default function Sidebar() {
                 {group.section}
               </div>
               {group.items.map((item, ii) => (
-                <a
+                <Link
                   key={ii}
-                  aria-current={item.active ? 'page' : undefined}
+                  to={item.path}
                   className={`flex items-center gap-space-sm px-space-sm py-ledger-cell-padding-y transition-colors rounded-lg font-body-md text-body-md ${
                     item.active
                       ? 'bg-primary-container text-on-primary font-semibold'
                       : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                   }`}
-                  href="#"
                 >
                   <MaterialSymbolsOutlined icon={item.icon} className="text-[18px]" />
                   <span>{item.label}</span>
-                </a>
+                </Link>
               ))}
             </div>
           ))}
